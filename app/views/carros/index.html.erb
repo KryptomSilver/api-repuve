@@ -1,0 +1,51 @@
+<div id="notice"><%= notice %></div>
+
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+      <%= link_to 'PDF', carros_path(format: :pdf), class:"btn btn-outline-info" %>
+        <%= link_to 'New Carro', new_carro_path, class:"btn btn-primary" %>
+          <table  class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th class="text-center">Clave car</th>
+                <th class="text-center">Marca car</th>
+                <th class="text-center">Modelo car</th>
+                <th class="text-center">Matricula</th>
+                <th class="text-center">Reprobo</th>
+                <th colspan="2"class="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @carros.each do |carro| %>
+                <tr>
+                  <td><p class="text-center"><%= carro.clave_car %></p></td>
+                  <td><p class="text-center"><%= carro.marca_car %></p></td>
+                  <td><p class="text-center"><%= carro.modelo_car %></p></td>
+                  <td><p class="text-center"><%= carro.matricula %></p></td>
+                  <td><p class="text-center"><%= carro.reprobo %></p></td>
+                  <td class="text-center"><%= link_to 'Ver', carro , class:"btn btn-primary" %>
+                  <%= link_to 'Edit', edit_carro_path(carro), class:"btn btn-success"%>
+                  <%= link_to 'Destroy', carro, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"  %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+      </div>  
+    </div>
+  </div>
+</body>
+</html>

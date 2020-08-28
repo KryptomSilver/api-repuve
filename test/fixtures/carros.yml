@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  clave_car: MyString
+  marca_car: MyString
+  modelo_car: MyString
+  matricula: MyString
+  reprobo: false
+
+two:
+  clave_car: MyString
+  marca_car: MyString
+  modelo_car: MyString
+  matricula: MyString
+  reprobo: false
