@@ -1,63 +1,66 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <title></title>
-</head>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-4"></div>
-        <div class="col-5">
+<br><br>
 <%= form_with(model: carro, local: true) do |form| %>
-  <% if carro.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(carro.errors.count, "error") %> prohibited this carro from being saved:</h2>
-
-      <ul>
-        <% carro.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div class="container">
+    <div class="row">
+        <% if carro.errors.any? %>
+        <div id="error_explanation">
+            <h2>
+                <%= pluralize(carro.errors.count, "error") %> prohibited this carro from being saved:</h2>
+            <ul>
+                <% carro.errors.full_messages.each do |message| %>
+                <li>
+                    <%= message %>
+                </li>
+                <% end %>
+            </ul>
+        </div>
         <% end %>
-      </ul>
+        <div class="col-12">
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-5">
+                        <%= form.label :reprobo, 'Reportado como robado: ' %>
+                    </div>
+                    <div class="col-2">
+                        <%= form.radio_button :reprobo ,'false',class: 'form-check-input'%>
+                        <%= form.label :reprobo , 'NO',class: 'form-check-label'%>
+                    </div>
+                    <div class="col-5">
+                        <%= form.radio_button :reprobo,'true' ,class: 'form-check-input'%>
+                        <%= form.label :reprobo , 'SI',class: 'form-check-label'%>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
-
-  <div class="form-group" >
-    <%= form.label :clave_car %>
-    <%= form.text_field :clave_car ,class: 'form-control'%>
-  </div>
-
-  <div class="form-group" >
-    <%= form.label :marca_car %>
-    <%= form.text_field :marca_car ,class: 'form-control'%>
-  </div>
-
-  <div class="form-group" >
-    <%= form.label :modelo_car %>
-    <%= form.text_field :modelo_car ,class: 'form-control'%>
-  </div>
-
-  <div class="form-group" >
-    <%= form.label :matricula %>
-    <%= form.text_field :matricula ,class: 'form-control'%>
-  </div>
-
-  <div class="form-check" >
-    <%= form.check_box :reprobo ,class: 'form-check-input'%>
-    <%= form.label :reprobo ,class: 'form-check-label'%>
-  </div>
-  <br>
-  <div >
-    <%= form.submit class: "btn btn-success"%><%= link_to 'Back', carros_path, class:"btn btn-danger" %>
-  </div>
-
-<% end %>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <%= form.label :marca_car, 'Marca de carro: ' %>
+                <%= form.text_field :marca_car ,class: 'form-control'%>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <%= form.label :modelo_car , 'Modelo de carro: '%>
+                <%= form.text_field :modelo_car ,class: 'form-control'%>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <%= form.label :matricula %>
+                <%= form.text_field :matricula ,class: 'form-control'%>
+            </div>
+        </div>
+    </div>
+    <div class="botones">
+        <div class="boton">
+            <%= link_to 'Cancelar', carros_path, class: "btn btn-lg btn-danger" %>
+        </div>
+        <div class="boton">
+            <%= form.submit 'Agregar',class: "btn btn-lg btn-success"%>
+        </div>
+    </div>
 </div>
-
-        <div class="col-3"></div>
-      </div>
-    </div>
-</body>
-</html>
+</div>
+<% end %>

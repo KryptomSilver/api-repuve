@@ -1,51 +1,88 @@
-<div id="notice"><%= notice %></div>
-
-
-<!DOCTYPE html>
-
-
-<html>
-<head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <title></title>
-</head>
-<body>
-  <div class="container">
+<div id="notice">
+    <%= notice %>
+</div>
+<br>
+<div class="container">
     <div class="row">
-      <div class="col-12">
-      <%= link_to 'PDF', carros_path(format: :pdf), class:"btn btn-outline-info" %>
-        <%= link_to 'New Carro', new_carro_path, class:"btn btn-primary" %>
-          <table  class="table table-bordered">
-            <thead class="thead-dark">
-              <tr>
-                <th class="text-center">Clave car</th>
-                <th class="text-center">Marca car</th>
-                <th class="text-center">Modelo car</th>
-                <th class="text-center">Matricula</th>
-                <th class="text-center">Reprobo</th>
-                <th colspan="2"class="text-center">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @carros.each do |carro| %>
-                <tr>
-                  <td><p class="text-center"><%= carro.clave_car %></p></td>
-                  <td><p class="text-center"><%= carro.marca_car %></p></td>
-                  <td><p class="text-center"><%= carro.modelo_car %></p></td>
-                  <td><p class="text-center"><%= carro.matricula %></p></td>
-                  <td><p class="text-center"><%= carro.reprobo %></p></td>
-                  <td class="text-center"><%= link_to 'Ver', carro , class:"btn btn-primary" %>
-                  <%= link_to 'Edit', edit_carro_path(carro), class:"btn btn-success"%>
-                  <%= link_to 'Destroy', carro, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"  %></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-      </div>  
+        <div class="col-12">
+            <%= link_to 'PDF', carros_path(format: :pdf), class:"btn btn-outline-info" %>
+            <%= link_to 'New Carro', new_carro_path, class:"btn btn-primary" %>
+            <br>
+            <table id="carros" class="table table-bordered" id="tabla">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">Matricula</th>
+                        <th class="text-center">Marca</th>
+                        <th class="text-center">Modelo</th>
+                        <th class="text-center">Reportado como robado</th>
+                        <th colspan="2" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @carros.each do |carro|
+                    var = carro.reprobo 
+                    texto = ""
+                    clase = ""
+                    if var == true
+                      texto = "SI"
+                      clase = "reportado"
+                    else
+                      texto = "NO"
+                      clase = ""
+                    end
+                    %>
+                    <tr class="<%= " #{clase}" %>">
+                        <td>
+                            <p class="text-center">
+                                <%= carro.matricula %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-center">
+                                <%= carro.marca_car %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-center">
+                                <%= carro.modelo_car %>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="text-center">
+                                <%= "#{texto}"
+                                  %>
+                            </p>
+                        </td>
+                        <td class="text-center">
+                            <%= link_to "#{image_tag("https://image.flaticon.com/icons/png/512/38/38553.png", :id => "imagen")}".html_safe, carro , class: "btn btn-outline-primary  boton-color" %>
+                            <%= link_to "#{image_tag("https://image.flaticon.com/icons/png/512/61/61456.png", :id => "imagen")}".html_safe, edit_carro_path(carro), class: "btn btn-outline-success boton-color"%>
+                            <button type="button" class="btn btn-outline-danger  boton-color" data-toggle="modal" data-target="#exampleModal">
+                                <img src="https://image.flaticon.com/icons/png/512/61/61848.png" id="imagen">
+                            </button>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar registro</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>¿Estas seguro de eliminarlo?</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <%= link_to 'Eliminar',carro, method: :delete, class: "btn btn-danger"  %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-</body>
-</html>
+</div>

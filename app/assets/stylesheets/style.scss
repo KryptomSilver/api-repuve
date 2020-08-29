@@ -1,0 +1,61 @@
+#imagen {
+    width: 30px;
+    height: 30px;
+}
+
+#tabla {
+    margin-top: 20px;
+}
+
+.reportado {
+    background: #ff000070;
+}
+
+.boton-color {
+    background: white;
+}
+
+.botones {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navegacion {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    list-style: none;
+    margin: 0;
+    background: black;
+    
+}
+
+.navegacion  a{
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: white;
+}
+
+@media all and (max-width: 600px) {
+  .navegacion {
+    flex-flow: column wrap;
+    padding: 0;
+  }
+  .navegacion a { 
+    text-align: center; 
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255,0.3); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+  }
+  .navegacin li:last-of-type a {
+    border-bottom: none;
+  }
+}
+@media all and (max-width: 800px) {
+    .navegacion {
+        justify-content: space-around;
+    }
+}
