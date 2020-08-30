@@ -15,3 +15,10 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+$(document).ready(function() {
+    setTimeout(function() {
+        $('#notice').hide("slow", function() {
+            $(this).remove();
+        })
+    }, 3000);
+});

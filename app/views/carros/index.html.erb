@@ -1,21 +1,25 @@
-<div id="notice">
-    <%= notice %>
-</div>
 <br>
+<% if notice %>
+<div class="alert alert-danger" id="notice">
+    <p id="texto">
+        <%= notice %>
+    </p>
+</div>
+<%end%>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <%= link_to 'PDF', carros_path(format: :pdf), class:"btn btn-outline-info" %>
-            <%= link_to 'New Carro', new_carro_path, class:"btn btn-primary" %>
+            <%= link_to "#{image_tag("https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/625px-PDF_file_icon.svg.png", :class => "imagen")}".html_safe, carros_path(format: :pdf), class:"imagen" %>
+            <%= link_to "#{image_tag("https://image.flaticon.com/icons/png/512/9/9379.png", :id => "crear")}".html_safe, new_carro_path, class:"btn btn-sm btn-success" %>
             <br>
-            <table id="carros" class="table table-bordered" id="tabla">
-                <thead class="thead-dark">
+            <table class="tabla">
+                <thead class="">
                     <tr>
-                        <th class="text-center">Matricula</th>
-                        <th class="text-center">Marca</th>
-                        <th class="text-center">Modelo</th>
-                        <th class="text-center">Reportado como robado</th>
-                        <th colspan="2" class="text-center">Acciones</th>
+                        <th class="texto"><label>Matricula</label></th>
+                        <th class="texto">Marca</th>
+                        <th class="texto">Modelo</th>
+                        <th class="texto">Reportado como robado</th>
+                        <th colspan="2" class="texto">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +35,7 @@
                       clase = ""
                     end
                     %>
-                    <tr class="<%= " #{clase}" %>">
+                    <tr class="<%= " #{clase}" %>" >
                         <td>
                             <p class="text-center">
                                 <%= carro.matricula %>
@@ -86,3 +90,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+</script>
