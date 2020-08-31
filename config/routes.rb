@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'carros#index'
+  root 'dashboard#index'
+  get 'carros/index'
   resources :carros
   namespace :api, defaults: {format: 'json'} do
     resources :carros, only: [:index, :create, :destroy, :update, :show]

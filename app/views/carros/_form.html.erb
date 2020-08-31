@@ -1,8 +1,14 @@
 <br><br>
 <%= form_with(model: carro, local: true) do |form| %>
 <div class="container">
+    <% if @carro.errors.any? %>
+    <div class="alert alert-danger" id="notice">
+        <p id="texto">
+            Tienes <%= pluralize(@carro.errors.count, "errores por favor revisa los campos") %>
+        </p>
+    </div>
+    <%end%>
     <div class="row">
-        
         <div class="col-12">
             <div class="form-group">
                 <div class="form-row">
